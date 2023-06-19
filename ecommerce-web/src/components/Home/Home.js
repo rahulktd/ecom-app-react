@@ -1,6 +1,7 @@
 import React,{useState,useEffect} from 'react'
 import './Home.css'
 import { getAllProducts } from '../../ApiService/api'
+import { Link } from 'react-router-dom'
 
 function Home() {
 
@@ -20,23 +21,30 @@ function Home() {
   return (
     <div className='product-grid'>
 
-        
+        {
+            products.map((product)=>(
+                <div className="product" key={product.id}>
 
-        <div className="product">
+            <img src={product.image} alt="alternative" />
 
-            <img src="" alt="alternative" />
-
-            <h2>Sample</h2>
+            <h2>{product.title}</h2>
 
             <p>
-                <span className='price'>10</span>
+                <span className='price'>{product.price}</span>
             </p>
-
+                <Link to={`/product/${product.id}`}>
             <button>Product details</button>
+            </Link>
 
 
         </div>
 
+
+            ))
+        }
+        
+
+        
 
     </div>
   )
